@@ -35,32 +35,66 @@
         <h1>
             Thực hiện các phép tính trên phân số:
         </h1>
+        <?php
+            class fraction
+            {
+                public $numerator;
+                public $denominator;
+
+                public function show()
+                {
+                    echo $this->numerator."/".$this->denominator;
+                }
+
+                public function greatest_common_divisor()
+                {
+                    $tmp;
+                    $a = abs($this->numerator);
+                    $b = abs($this->denominator);
+                    while($b != 0) {
+                        $tmp = $a % $b;
+                        $a = $b;
+                        $b = $tmp;
+                    }
+                    return $a;
+                }
+
+                public function simplify()
+                {
+                    $GCD = $this->greatest_common_divisor();
+                    $this->numerator = $this->numerator / $GCD;
+                    $this->denominator = $this->denominator / $GCD;
+                }
+            }
+
+        ?>
+
         <form name="oop" action="OOP2.php" method="POST">
             <div class="grid-container-4">
                 <div class="grid-item">
                     Nhập phân số thứ 1: tử số: 
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="first-numerator" required value="">
+                    <input type="number" name="first_numerator" required value="">
                 </div>
                 <div class="grid-item">
                     mẫu số:
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="first-denominator" required value="">
+                    <input type="number" name="first_denominator" required value="">
                 </div>
 
                 <div class="grid-item">
                     Nhập phân số thứ 2: tử số: 
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="second-numerator" required value="">
+                    <input type="number" name="second_numerator" required value="">
                 </div>
                 <div class="grid-item">
                     mẫu số:
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="second-denominator" required value="">
+                    <input type="number" name="second_denominator" required value="">
                 </div>
                 
                 <div class="grid-item item1-5">
