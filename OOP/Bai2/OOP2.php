@@ -43,7 +43,7 @@
 
                 public function show()
                 {
-                    echo $this->numerator."/".$this->denominator;
+                    return $this->numerator."/".$this->denominator;
                 }
 
                 public function greatest_common_divisor()
@@ -104,6 +104,7 @@
                     $result->numerator = $f1->numerator * $f2->numerator;
                     $result->denominator = $f1->denominator * $f2->denominator;
                     $result->simplify();
+                    return $result;
                 }
             }
 
@@ -115,6 +116,7 @@
                     $result->numerator = $f1->numerator * $f2->denominator;
                     $result->denominator = $f1->denominator * $f2->numerator;
                     $result->simplify();
+                    return $result;
                 }
             }
 
@@ -136,8 +138,8 @@
                     case 'subtraction':
                         $caculator = new subtraction();
                         break;
-                    case 'mutliplication':
-                        $caculator = new mutliplication();
+                    case 'multiplication':
+                        $caculator = new multiplication();
                         break;
                     case 'division':
                         $caculator = new division();
@@ -145,6 +147,16 @@
                     default:
                         break;
                 }
+
+                $result = $caculator->caculator($f1,$f2); 
+            }
+
+            else 
+            {
+                $f1->numerator = 0;
+                $f1->denominator = 0;
+                $f2->numerator = 0;
+                $f2->denominator = 0;
             }
         ?>
 
@@ -154,26 +166,26 @@
                     Nhập phân số thứ 1: tử số: 
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="first_numerator" required value="">
+                    <input type="number" name="first_numerator" required value="<?php echo (isset($_POST['submit'])?$f1->numerator:'');?>">
                 </div>
                 <div class="grid-item">
                     mẫu số:
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="first_denominator" required value="">
+                    <input type="number" name="first_denominator" required value="<?php echo (isset($_POST['submit'])?$f1->denominator:'');?>">
                 </div>
 
                 <div class="grid-item">
                     Nhập phân số thứ 2: tử số: 
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="second_numerator" required value="">
+                    <input type="number" name="second_numerator" required value="<?php echo (isset($_POST['submit'])?$f2->numerator:'');?>">
                 </div>
                 <div class="grid-item">
                     mẫu số:
                 </div>
                 <div class="grid-item">
-                    <input type="number" name="second_denominator" required value="">
+                    <input type="number" name="second_denominator" required value="<?php echo (isset($_POST['submit'])?$f2->denominator:'');?>">
                 </div>
                 
                 <div class="grid-item item1-5">
@@ -189,7 +201,7 @@
                 </div>
                 <div class="grid-item item1-5">
                     <input type="submit" name="submit" value="Kết quả">
-                    <input type="text" name="result" value="">
+                    <input type="text" name="result" value="<?php echo (isset($_POST['submit'])?$result->show():'');?>">
                 </div>
             </div>
         </form>
