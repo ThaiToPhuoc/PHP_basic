@@ -67,6 +67,57 @@
                 }
             }
 
+            interface caculation
+            {
+                public function caculator(fraction $f1, fraction $f2);
+            }
+
+            class summation implements caculation
+            {
+                function caculator(fraction $f1, fraction $f2)
+                {
+                    $result = new fraction();
+                    $result->denominator = $f1->denominator * $f2->denominator;
+                    $result->numerator = $f1->numerator * $f2->denominator + $f2->numerator * $f1->denominator;
+                    $result->simplify();
+                    return $result;
+                }
+            }
+
+            class subtraction implements caculation
+            {
+                function caculator(fraction $f1, fraction $f2)
+                {
+                    $result = new fraction();
+                    $result->denominator = $f1->denominator * $f2->denominator;
+                    $result->numerator = $f1->numerator * $f2->denominator - $f2->numerator * $f1->denominator;
+                    $result->simplify();
+                    return $result;
+                }
+            }
+
+            class multiplication implements caculation
+            {
+                function caculator(fraction $f1, fraction $f2)
+                {
+                    $result = new fraction();
+                    $result->numerator = $f1->numerator * $f2->numerator;
+                    $result->denominator = $f1->denominator * $f2->denominator;
+                    $result->simplify();
+                }
+            }
+
+            class division implements caculation
+            {
+                function caculator(fraction $f1, fraction $f2)
+                {
+                    $result = new fraction();
+                    $result->numerator = $f1->numerator * $f2->denominator;
+                    $result->denominator = $f1->denominator * $f2->numerator;
+                    $result->simplify();
+                }
+            }
+
         ?>
 
         <form name="oop" action="OOP2.php" method="POST">
@@ -104,7 +155,7 @@
                         </legend>
                         <input type="radio" name="caculation" value="summation" checked> cộng
                         <input type="radio" name="caculation" value="subtraction"> trừ 
-                        <input type="radio" name="caculation" value="mutliplication"> nhân
+                        <input type="radio" name="caculation" value="multiplication"> nhân
                         <input type="radio" name="caculation" value="division"> chia
                     </fieldset>
                 </div>
