@@ -118,6 +118,34 @@
                 }
             }
 
+            $f1 = new fraction();
+            $f2 = new fraction();
+
+            if(isset($_POST['submit']))
+            {
+                $f1->numerator = $_POST['first_numerator'];
+                $f1->denominator = $_POST['first_denominator'];
+                $f2->numerator = $_POST['second_numerator'];
+                $f2->denominator = $_POST['second_denominator'];
+
+                $caculation = $_POST['caculation'];
+                switch ($caculation) {
+                    case 'summation':
+                        $caculator = new summation();
+                        break;
+                    case 'subtraction':
+                        $caculator = new subtraction();
+                        break;
+                    case 'mutliplication':
+                        $caculator = new mutliplication();
+                        break;
+                    case 'division':
+                        $caculator = new division();
+                        break;
+                    default:
+                        break;
+                }
+            }
         ?>
 
         <form name="oop" action="OOP2.php" method="POST">
